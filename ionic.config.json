@@ -1,0 +1,7 @@
+{
+  "name": "mesa52",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
