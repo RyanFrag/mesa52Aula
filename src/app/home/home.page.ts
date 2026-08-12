@@ -5,18 +5,26 @@ import { CommonModule, JsonPipe } from '@angular/common'
 import { Carta } from '../models/carta';
 import { IonicModule} from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { ValorPipePipe } from '../pipes/valor-pipe-pipe';
+import { NaipePipePipe } from '../pipes/naipe-pipe-pipe';
+import { CorNaipe } from '../diretiva/cor-naipe';
+import { CardComponentComponent } from '../card-component/card-component.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [CommonModule, IonicModule, FormsModule],
+  imports: [CommonModule, IonicModule, FormsModule, ValorPipePipe, NaipePipePipe, CorNaipe, CardComponentComponent],
 })
 export class HomePage {
   baralho: Baralho = new Baralho();
   cartas?: Carta[] = []
   cartasRestantes?: number = 0;
-  quantidade: number = 1
+  quantidade: number = 1;
+
+  cartaSelecionada?: Carta = undefined;
+
+
   constructor(private baralhoService: BaralhoService) {}
   ngOnInit(){
    this.novoBaralho()
@@ -52,5 +60,10 @@ export class HomePage {
       }
     })
   }
+
+  selecionarCarta(carta: Carta){
+    this.cartaSelecionada = carta
+  }
+
 
 }
