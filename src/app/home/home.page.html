@@ -7,14 +7,30 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <p> Cartas restantes <strong> {{cartasRestantes}} </strong> </p>
+  <ion-item>
+    <ion-label> Quantidade </ion-label>    
+    <ion-select 
+      [(ngModel)]="quantidade"
+      interface="popover" placeholder="1 a 5">
+      <ion-select-option [value]="1"> 1 carta </ion-select-option>
+      <ion-select-option [value]="2"> 2 cartas </ion-select-option>
+      <ion-select-option [value]="3"> 3 cartas </ion-select-option>
+      <ion-select-option [value]="4"> 4 cartas </ion-select-option>
+      <ion-select-option [value]="5"> 5 cartas </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button (click)="comprarCartas()">
+     Comprar Carta 
+  </ion-button>
+  <ion-button (click)="novoBaralho()">
+     Novo Baralho
+  </ion-button>
+
+  <div *ngIf="cartas != undefined && cartas.length > 0">
+    <div *ngFor="let carta of cartas">
+      <img src="{{carta.image}}" alt="carta baralho">
+    </div>
   </div>
 </ion-content>
