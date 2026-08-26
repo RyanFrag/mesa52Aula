@@ -1,2 +1,6 @@
+<ion-item>
+  <ion-label> {{ carta.suit | naipePipe}}   {{ carta.value | valorPipe}}
+ </ion-label>
+ <ion-icon name="open-outline"></ion-icon>
+</ion-item>
 
-<img *ngIf="carta" (click)="selecionarCarta(carta)" src="{{carta.image}}" alt="carta baralho">
