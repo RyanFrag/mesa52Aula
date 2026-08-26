@@ -1,6 +1,6 @@
 <ion-item>
   <ion-label> {{ carta.suit | naipePipe}}   {{ carta.value | valorPipe}}
  </ion-label>
- <ion-icon name="open-outline"></ion-icon>
+ <ion-icon (click)="selecionarCarta(carta)" name="open-outline"></ion-icon>
 </ion-item>
 

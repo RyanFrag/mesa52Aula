@@ -47,26 +47,6 @@
   <div *ngIf="cartasRestantes == 0">
     <p> O baralho acabou, compre um novo baralho</p>
   </div>
-  <div *ngIf="cartaSelecionada as carta">
-    <ion-card *ngIf="carta.value !== null ">
-      <ion-card-header>
-        <ion-card-title>
-          <h1>
-            <b>
-              {{carta.value | valorPipe}} de {{carta.suit | naipePipe}}
-            </b>
-          </h1>
-          <hr>
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <div style="display: flex; justify-content: center;">
-          <img src="{{carta.image}}" alt="carta baralho" class="carta-classe" [appCorNaipe]="carta.suit">
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </div>
-
 
 
 </ion-content>

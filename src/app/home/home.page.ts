@@ -9,6 +9,8 @@ import { ValorPipePipe } from '../pipes/valor-pipe-pipe';
 import { NaipePipePipe } from '../pipes/naipe-pipe-pipe';
 import { CorNaipe } from '../diretiva/cor-naipe';
 import { CardComponentComponent } from '../card-component/card-component.component';
+import { ModalController } from '@ionic/angular/standalone';
+import { CardModalComponent } from '../modal/card-modal/card-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +27,9 @@ export class HomePage {
   cartaSelecionada?: Carta = undefined;
 
 
-  constructor(private baralhoService: BaralhoService) {}
+  constructor(private baralhoService: BaralhoService, private modalController: ModalController) {}
+
+
   ngOnInit(){
    this.novoBaralho()
   }
@@ -62,8 +66,12 @@ export class HomePage {
   }
 
   selecionarCarta(carta: Carta){
-    this.cartaSelecionada = carta
+    const modal = this.modalController.create({
+      component: CardModalComponent,
+      componentProps: {
+        cartaSelecionada: carta
+      }
+    })
+    modal.then(m => m.present())
   }
-
-
 }
