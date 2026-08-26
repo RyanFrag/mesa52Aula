@@ -7,33 +7,37 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
   <div>
-    <header>
+    <div class="text-center" style="text-align: center;">
+      <header>
         <h1> Mesa 52 </h1>
         <p> APP para comprar cartas de um baralho</p>
-    </header>
-  </div>
+        <p> Cartas restantes <strong> {{cartasRestantes}} </strong> </p>
+      </header>
+    </div>
+    <div>
 
-  <p> Cartas restantes <strong> {{cartasRestantes}} </strong> </p>
-  <ion-item>
-    <ion-label> Quantidade </ion-label>
-    <ion-select
-      [(ngModel)]="quantidade"
-      interface="popover" placeholder="1 a 5">
-      <ion-select-option [value]="1"> 1 carta </ion-select-option>
-      <ion-select-option [value]="2"> 2 cartas </ion-select-option>
-      <ion-select-option [value]="3"> 3 cartas </ion-select-option>
-      <ion-select-option [value]="4"> 4 cartas </ion-select-option>
-      <ion-select-option [value]="5"> 5 cartas </ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-button *ngIf="cartasRestantes! > 0" (click)="comprarCartas()">
-     Comprar Carta
-  </ion-button>
-  <ion-button (click)="novoBaralho()">
-     Novo Baralho
-  </ion-button>
+      <ion-item>
+        <ion-label> Quantidade </ion-label>
+        <ion-select [(ngModel)]="quantidade" interface="popover" placeholder="1 a 5">
+          <ion-select-option [value]="1"> 1 carta </ion-select-option>
+          <ion-select-option [value]="2"> 2 cartas </ion-select-option>
+          <ion-select-option [value]="3"> 3 cartas </ion-select-option>
+          <ion-select-option [value]="4"> 4 cartas </ion-select-option>
+          <ion-select-option [value]="5"> 5 cartas </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="d-flex">
+        <ion-button *ngIf="cartasRestantes! > 0" (click)="comprarCartas()">
+          Comprar Carta
+        </ion-button>
+        <ion-button (click)="novoBaralho()">
+          Novo Baralho
+        </ion-button>
+      </div>
+
+    </div>
+  </div>
 
   <div *ngIf="cartas != undefined && cartas.length > 0">
     <div *ngFor="let carta of cartas">
@@ -47,20 +51,17 @@
     <ion-card *ngIf="carta.value !== null ">
       <ion-card-header>
         <ion-card-title>
-         <h1>
-          <b>
-            {{carta.value | valorPipe}} de {{carta.suit | naipePipe}}
-          </b>
-        </h1>
-        <hr>
+          <h1>
+            <b>
+              {{carta.value | valorPipe}} de {{carta.suit | naipePipe}}
+            </b>
+          </h1>
+          <hr>
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div style="display: flex; justify-content: center;">
-          <img src="{{carta.image}}"
-            alt="carta baralho" class="carta-classe"
-            [appCorNaipe]="carta.suit"
-            >
+          <img src="{{carta.image}}" alt="carta baralho" class="carta-classe" [appCorNaipe]="carta.suit">
         </div>
       </ion-card-content>
     </ion-card>
