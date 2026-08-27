@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { CorNaipe } from 'src/app/diretiva/cor-naipe';
 import { Carta } from 'src/app/models/carta';
 import { NaipePipePipe } from 'src/app/pipes/naipe-pipe-pipe';
@@ -14,8 +15,9 @@ import { ValorPipePipe } from 'src/app/pipes/valor-pipe-pipe';
 })
 export class CardModalComponent  implements OnInit {
   @Input() cartaSelecionada: Carta;
-  constructor() { }
-
+  constructor(private modalController: ModalController) { }
   ngOnInit() {}
-
+  fechar(){
+    this.modalController.dismiss()
+  }
 }
