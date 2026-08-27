@@ -3,13 +3,13 @@ import { BaralhoService } from '../services/baralho.service'
 import { Baralho } from '../models/baralho'
 import { CommonModule, JsonPipe } from '@angular/common'
 import { Carta } from '../models/carta';
-import { IonicModule} from '@ionic/angular';
+import { IonicModule, ToastController} from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { ValorPipePipe } from '../pipes/valor-pipe-pipe';
 import { NaipePipePipe } from '../pipes/naipe-pipe-pipe';
 import { CorNaipe } from '../diretiva/cor-naipe';
 import { CardComponentComponent } from '../card-component/card-component.component';
-import { ModalController } from '@ionic/angular/standalone';
+import { ModalController, RefresherCustomEvent } from '@ionic/angular/standalone';
 import { CardModalComponent } from '../modal/card-modal/card-modal.component';
 
 @Component({
@@ -27,7 +27,10 @@ export class HomePage {
   cartaSelecionada?: Carta = undefined;
 
 
-  constructor(private baralhoService: BaralhoService, private modalController: ModalController) {}
+  constructor(private baralhoService: BaralhoService,
+    private modalController: ModalController,
+    private toastController: ToastController
+  ) {}
 
 
   ngOnInit(){
@@ -40,27 +43,25 @@ export class HomePage {
         // esperar o valor quando chegar corretamente
         this.baralho = resposta
         this.cartasRestantes = this.baralho.remaining
+        this.mostrarAlerta("Baralho comprado com sucesso")
       },
       error: (err) => {
         // se der erro na api
-        alert("Erro, não foi possivel obter o baralho")
+        this.mostrarAlerta("Erro ao comprar ao comprar Baralho")
       }
     })
   }
 
   comprarCartas(){
-    // se não deck_id WOW não tem baralho, sai da função
-    if(!this.baralho.deck_id || !this.baralho){
-      alert("Erro, sem id do baralho")
-      return;
-    }
     this.baralhoService.comprarCartas(this.baralho.deck_id, this.quantidade).subscribe({
       next: (resposta) =>{
-        this.cartas = resposta!.cards ?? []
+        this.cartas = [...this.cartas, ...resposta!.cards ?? []]
         this.cartasRestantes = resposta!.remaining
+        this.mostrarAlerta("Cartas compradas")
       },
+
       error: (error) => {
-        alert("Erro ao comprar a carta")
+        this.mostrarAlerta("Erro ao comprar a carta")
       }
     })
   }
@@ -73,5 +74,30 @@ export class HomePage {
       }
     })
     modal.then(m => m.present())
+  }
+
+  atualizarCarta(event: RefresherCustomEvent){
+    this.baralhoService.comprarCartas(this.baralho.deck_id, this.quantidade).subscribe({
+      next: (resposta) =>{
+        this.cartas = [...this.cartas, ...resposta!.cards ?? []]
+        this.cartasRestantes = resposta!.remaining
+        event.target.complete();
+        this.mostrarAlerta("Cartas atualizadas")
+      },
+      error: (error) => {
+        this.mostrarAlerta("Erro ao comprar a carta")
+        event.target.complete()
+      }
+    })
+
+
+  }
+
+  mostrarAlerta(mensagem: string){
+   this.toastController.create({
+      message: mensagem,
+      duration: 2000,
+      position: 'bottom'
+    }).then(t => t.present())
   }
 }
