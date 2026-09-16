@@ -43,6 +43,7 @@ export class HomePage {
         // esperar o valor quando chegar corretamente
         this.baralho = resposta
         this.cartasRestantes = this.baralho.remaining
+        this.cartas = []
         this.mostrarAlerta("Baralho comprado com sucesso")
       },
       error: (err) => {

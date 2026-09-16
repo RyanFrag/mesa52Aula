@@ -31,7 +31,8 @@
           <ion-select-option [value]="5"> 5 cartas </ion-select-option>
         </ion-select>
       </ion-item>
-      <div class="d-flex">
+      <ion-item>
+     <div class="d-flex">
         <ion-button *ngIf="cartasRestantes! > 0" (click)="comprarCartas()">
           Comprar Carta
         </ion-button>
@@ -39,6 +40,8 @@
           Novo Baralho
         </ion-button>
       </div>
+
+      </ion-item>
 
     </div>
   </div>
