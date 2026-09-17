@@ -11,6 +11,8 @@ import { CorNaipe } from '../diretiva/cor-naipe';
 import { CardComponentComponent } from '../card-component/card-component.component';
 import { ModalController, RefresherCustomEvent } from '@ionic/angular/standalone';
 import { CardModalComponent } from '../modal/card-modal/card-modal.component';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +31,9 @@ export class HomePage {
 
   constructor(private baralhoService: BaralhoService,
     private modalController: ModalController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private router: Router,
+    private auth: AuthService
   ) {}
 
 
@@ -100,5 +104,11 @@ export class HomePage {
       duration: 2000,
       position: 'bottom'
     }).then(t => t.present())
+  }
+
+  logout(){
+    this.auth.logout().then(() => {
+      this.router.navigate(['login'])
+    })
   }
 }

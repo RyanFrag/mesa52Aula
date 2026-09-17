@@ -30,14 +30,15 @@ export class LoginPage  {
       }
     )
   }
-  
-
   entrarComGoogle(){
-  
+    this.auth.loginGoogle().then(
+      () => {
+        this.router.navigateByUrl('/home');
+      }
+    )
   }
-
   inParaCadastrar(){
-    
+    this.router.navigateByUrl('/cadastro');
   }
   
 }
