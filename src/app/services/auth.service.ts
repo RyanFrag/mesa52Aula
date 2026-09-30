@@ -4,9 +4,11 @@ import { Observable } from 'rxjs'
 import {
     createUserWithEmailAndPassword,
     GoogleAuthProvider,
+    onAuthStateChanged,
     signInWithEmailAndPassword,
     signInWithPopup,
-    signOut
+    signOut,
+    User
   } from 'firebase/auth';
 import { auth} from '../firebase.config';
 
@@ -14,6 +16,16 @@ import { auth} from '../firebase.config';
   providedIn: 'root',
 })
 export class AuthService {
+
+  usuarioAtual(): Observable<User | null > {
+    return new Observable((observer) => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        observer.next(user);
+      });
+      return unsubscribe;
+    })
+  }
+
     cadastrar(email: string, senha: string){
       return createUserWithEmailAndPassword(auth, email, senha);
     }
