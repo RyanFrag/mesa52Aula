@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs'
-import { 
-    createUserWithEmailAndPassword, 
-    GoogleAuthProvider, 
-    signInWithEmailAndPassword, 
+import {
+    createUserWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithEmailAndPassword,
     signInWithPopup,
     signOut
   } from 'firebase/auth';
