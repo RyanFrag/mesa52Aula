@@ -17,6 +17,8 @@ import { auth} from '../firebase.config';
 })
 export class AuthService {
 
+  // Essa função fica buscando se existe um usuário atual
+  // se não existir retorna vazio, se existir retorna o usuário
   usuarioAtual(): Observable<User | null > {
     return new Observable((observer) => {
       const unsubscribe = onAuthStateChanged(auth, (user) => {
