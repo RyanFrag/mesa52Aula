@@ -38,7 +38,19 @@ export class HomePage {
 
 
   ngOnInit(){
-   this.novoBaralho()
+   this.novoBaralho();
+   this.buscarUsuarioAtual();
+  }
+
+  nomeUsuario: string;
+  fotoPerfil: string;
+  buscarUsuarioAtual(){
+    this.auth.usuarioAtual().subscribe({
+      next: (resposta) => {
+        this.nomeUsuario = resposta.displayName
+        this.fotoPerfil = resposta.photoURL
+      }
+    })
   }
 
   novoBaralho(){

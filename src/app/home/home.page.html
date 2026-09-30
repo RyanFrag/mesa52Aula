@@ -16,6 +16,16 @@
       <header>
         <h1> Mesa 52 </h1>
         <p> APP para comprar cartas de um baralho</p>
+        <div>
+          <img
+            width="50"
+            height="50"
+            src="{{ fotoPerfil }}"
+            alt="foto de perfil"
+            style="border-radius: 50%; margin-right: 10px;"
+            >
+          <p> Olá, <strong>  {{nomeUsuario}} </strong></p>
+        </div>
         <p> Cartas restantes <strong> {{cartasRestantes}} </strong> </p>
       </header>
     </div>
@@ -58,7 +68,7 @@
     (click)="logout()"
     color="danger"
     expand="block"
-   > 
-    Sair 
+   >
+    Sair
   </ion-button>
 </ion-content>
