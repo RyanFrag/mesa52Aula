@@ -1,15 +1,26 @@
 import { Component } from '@angular/core';
 import { BaralhoService } from '../services/baralho.service'
 import { Baralho } from '../models/baralho'
-import { CommonModule, JsonPipe } from '@angular/common'
+import { CommonModule } from '@angular/common'
 import { Carta } from '../models/carta';
-import { IonicModule, ToastController} from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { ValorPipePipe } from '../pipes/valor-pipe-pipe';
-import { NaipePipePipe } from '../pipes/naipe-pipe-pipe';
-import { CorNaipe } from '../diretiva/cor-naipe';
 import { CardComponentComponent } from '../card-component/card-component.component';
-import { ModalController, RefresherCustomEvent } from '@ionic/angular/standalone';
+import {
+  IonButton,
+  IonContent,
+  IonHeader,
+  IonItem,
+  IonLabel,
+  IonRefresher,
+  IonRefresherContent,
+  IonSelect,
+  IonSelectOption,
+  IonTitle,
+  IonToolbar,
+  ModalController,
+  RefresherCustomEvent,
+  ToastController,
+} from '@ionic/angular/standalone';
 import { CardModalComponent } from '../modal/card-modal/card-modal.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -18,7 +29,22 @@ import { AuthService } from '../services/auth.service';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [CommonModule, IonicModule, FormsModule, ValorPipePipe, NaipePipePipe, CorNaipe, CardComponentComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonRefresher,
+    IonRefresherContent,
+    IonItem,
+    IonLabel,
+    IonSelect,
+    IonSelectOption,
+    IonButton,
+    CardComponentComponent,
+  ],
 })
 export class HomePage {
   baralho: Baralho = new Baralho();

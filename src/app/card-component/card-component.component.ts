@@ -1,8 +1,8 @@
 import { openOutline } from 'ionicons/icons';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Carta } from '../models/carta';
-import { CommonModule, JsonPipe } from '@angular/common'
-import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common'
+import { IonIcon, IonItem, IonLabel } from '@ionic/angular/standalone';
 import { ValorPipePipe } from '../pipes/valor-pipe-pipe';
 import { NaipePipePipe } from '../pipes/naipe-pipe-pipe';
 import { addIcons } from 'ionicons';
@@ -10,7 +10,7 @@ import { addIcons } from 'ionicons';
   selector: 'app-card-component',
   templateUrl: './card-component.component.html',
   styleUrls: ['./card-component.component.scss'],
-  imports: [CommonModule, IonicModule, ValorPipePipe, NaipePipePipe],
+  imports: [CommonModule, IonItem, IonLabel, IonIcon, ValorPipePipe, NaipePipePipe],
 })
 export class CardComponentComponent  implements OnInit {
 
