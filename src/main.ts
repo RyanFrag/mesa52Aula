@@ -6,6 +6,7 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { isDevMode } from '@angular/core';
 import { provideServiceWorker } from '@angular/service-worker';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -20,3 +21,4 @@ bootstrapApplication(AppComponent, {
     // Necessário para injetar httpClient nos components
   ],
 });
+defineCustomElements(window);

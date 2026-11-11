@@ -24,6 +24,8 @@ import {
 import { CardModalComponent } from '../modal/card-modal/card-modal.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Camera } from '@capacitor/camera';
+
 
 @Component({
   selector: 'app-home',
@@ -53,6 +55,8 @@ export class HomePage {
   quantidade: number = 1;
 
   cartaSelecionada?: Carta = undefined;
+
+  fotoMesa: string;
 
 
   constructor(private baralhoService: BaralhoService,
@@ -148,5 +152,24 @@ export class HomePage {
     this.auth.logout().then(() => {
       this.router.navigate(['login'])
     })
+  }
+
+
+
+  async tirarFoto(){
+
+    try {
+      const resultado = await Camera.takePhoto({
+        quality: 80,
+        saveToGallery: false,
+      })
+
+      if (resultado.webPath) {
+        this.fotoMesa = resultado.webPath;
+      }
+    } catch (error) {
+      console.error(error)
+    }
+
   }
 }
