@@ -29,6 +29,7 @@ import { CardModalComponent } from '../modal/card-modal/card-modal.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Camera } from '@capacitor/camera';
+import { Geolocation } from '@capacitor/geolocation';
 
 
 @Component({
@@ -63,8 +64,9 @@ export class HomePage {
   quantidade: number = 1;
 
   cartaSelecionada?: Carta = undefined;
-
   fotoMesa: string;
+  latitude: number;
+  longitude: number;
 
 
   constructor(private baralhoService: BaralhoService,
@@ -176,4 +178,44 @@ export class HomePage {
       console.error(error)
     }
   }
+
+  async escolherDaGaleria(){
+    try {
+      const escolha = await Camera.chooseFromGallery({
+        quality: 80,
+        allowMultipleSelection: false
+      })
+      const foto = escolha.results[0]
+      if(foto.webPath){
+        this.fotoMesa = foto.webPath
+      }
+    }catch (error) {
+      console.error(error)
+    }
+  }
+
+
+  async obterLocalizacao(): Promise<void>{
+    try {
+      try{
+          const permissao = await Geolocation.checkPermissions();
+          if(permissao.location !== 'granted'){
+            await Geolocation.requestPermissions();
+          }
+      }catch (error) {
+      console.error(error)
+    }
+    const posicao = await Geolocation.getCurrentPosition({
+      enableHighAccuracy: true,
+      timeout: 10000
+    });
+    this.latitude = posicao.coords.latitude;
+    this.longitude = posicao.coords.longitude;
+
+  } catch (error) {
+      console.error(error)
+    }
+  }
+
+
 }

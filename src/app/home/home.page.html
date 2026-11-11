@@ -76,6 +76,8 @@
       <p *ngIf="!fotoMesa"> Nenhuma foto Registrada</p>
       <img *ngIf="fotoMesa" [src]="fotoMesa" alt="foto daora">
       <ion-button (click)="tirarFoto()"> Tirar foto </ion-button>
+      <ion-button (click)="escolherDaGaleria()">
+        Escolher da galeria</ion-button>
     </ion-card-content>
   </ion-card>
 
