@@ -53,6 +53,7 @@
 
       </ion-item>
 
+
     </div>
   </div>
 
@@ -64,6 +65,23 @@
   <div *ngIf="cartasRestantes == 0">
     <p> O baralho acabou, compre um novo baralho</p>
   </div>
+
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> Carta Selecionada </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p *ngIf="!fotoMesa"> Nenhuma foto Registrada</p>
+      <img *ngIf="fotoMesa" [src]="fotoMesa" alt="foto daora">
+      <ion-button (click)="tirarFoto()"> Tirar foto </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
   <ion-button
     (click)="logout()"
     color="danger"

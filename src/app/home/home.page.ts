@@ -7,6 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { CardComponentComponent } from '../card-component/card-component.component';
 import {
   IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
   IonContent,
   IonHeader,
   IonItem,
@@ -46,6 +50,10 @@ import { Camera } from '@capacitor/camera';
     IonSelectOption,
     IonButton,
     CardComponentComponent,
+    IonCard,
+    IonCardContent,
+    IonCardTitle,
+    IonCardHeader
   ],
 })
 export class HomePage {
@@ -154,10 +162,7 @@ export class HomePage {
     })
   }
 
-
-
   async tirarFoto(){
-
     try {
       const resultado = await Camera.takePhoto({
         quality: 80,
@@ -170,6 +175,5 @@ export class HomePage {
     } catch (error) {
       console.error(error)
     }
-
   }
 }
