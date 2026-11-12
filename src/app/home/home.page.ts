@@ -67,7 +67,7 @@ export class HomePage {
   fotoMesa: string;
   latitude: number;
   longitude: number;
-
+  precisao: number;
 
   constructor(private baralhoService: BaralhoService,
     private modalController: ModalController,
@@ -211,7 +211,7 @@ export class HomePage {
     });
     this.latitude = posicao.coords.latitude;
     this.longitude = posicao.coords.longitude;
-
+    this.precisao = posicao.coords.accuracy;
   } catch (error) {
       console.error(error)
     }
