@@ -81,6 +81,12 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-button
+    expand="block"
+    (click)="obterLocalizacao()">
+    Obter Localizacao
+  </ion-button>
+
   <div *ngIf="latitude !== null && longitude !== null">
     <p>
       Latitude: {{latitude | number : '1.4-6'}}
@@ -93,10 +99,20 @@
     </p>
   </div>
 
-  <ion-button>
-
+  <ion-button
+    *ngIf="latitude != null && longitude != null"
+    expand="block"
+    fill="outline"
+    [href]="abrirNoMapa()"
+    target="_blank"
+    rel="noopener noreferrer"
+    >
+    Abrir no Mapa
   </ion-button>
-
+  <!-- ionic build
+   npx cap sync
+   npc cap open android
+-->
 
 
 
