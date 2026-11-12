@@ -217,5 +217,7 @@ export class HomePage {
     }
   }
 
-
+  abrirNoMapa(){
+    return `https://www.openstreetmap.org/?mlat=${this.latitude}&mlon=${this.longitude}#map=16/${this.latitude}/${this.longitude}`
+  }
 }
