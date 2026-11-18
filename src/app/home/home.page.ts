@@ -59,7 +59,7 @@ import { Geolocation } from '@capacitor/geolocation';
     IonSpinner,
     CardComponentComponent,
     IonButtons,
-    IonMenuButton
+    IonMenuButton,
   ],
 })
 export class HomePage {
@@ -77,7 +77,6 @@ export class HomePage {
   carregandoLocalizacao = false;
   erroLocalizacao = '';
   erroFoto = '';
-
 
   constructor(private baralhoService: BaralhoService,
     private modalController: ModalController,
