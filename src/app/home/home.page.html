@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>
       Mesa 52
     </ion-title>
@@ -64,6 +67,67 @@
   <div *ngIf="cartasRestantes == 0">
     <p> O baralho acabou, compre um novo baralho</p>
   </div>
+
+  <ion-card class="registro">
+    <ion-card-header>
+      <ion-card-title>Registro da partida</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <img *ngIf="fotoMesa" class="foto-mesa" [src]="fotoMesa" alt="Foto da mesa">
+      <p *ngIf="!fotoMesa">Nenhuma foto registrada.</p>
+      <p *ngIf="erroFoto">{{ erroFoto }}</p>
+
+      <ion-button expand="block" (click)="tirarFoto()">Tirar foto</ion-button>
+      <ion-button expand="block" fill="outline" (click)="escolherDaGaleria()">
+        Escolher da galeria
+      </ion-button>
+
+      <h3>Localização</h3>
+
+      <div class="localizacao-carregando" *ngIf="carregandoLocalizacao">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Obtendo localização...</p>
+      </div>
+
+      <p *ngIf="!carregandoLocalizacao && latitude == null">
+        Localização ainda não obtida.
+      </p>
+      <p *ngIf="erroLocalizacao">{{ erroLocalizacao }}</p>
+
+      <div *ngIf="latitude != null && longitude != null">
+        <p>Latitude: {{ latitude | number:'1.4-6' }}</p>
+        <p>Longitude: {{ longitude | number:'1.4-6' }}</p>
+        <p *ngIf="precisao != null">
+          Precisão: aproximadamente {{ precisao | number:'1.0-0' }} metros
+        </p>
+      </div>
+
+      <ion-button
+        *ngIf="latitude == null"
+        expand="block"
+        [disabled]="carregandoLocalizacao"
+        (click)="obterLocalizacao()">
+        Obter localização
+      </ion-button>
+      <ion-button
+        *ngIf="latitude != null"
+        expand="block"
+        [disabled]="carregandoLocalizacao"
+        (click)="obterLocalizacao()">
+        Atualizar localização
+      </ion-button>
+      <ion-button
+        *ngIf="latitude != null && longitude != null"
+        expand="block"
+        fill="outline"
+        [href]="urlMapa()"
+        target="_blank"
+        rel="noopener noreferrer">
+        Abrir no mapa
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
   <ion-button
     (click)="logout()"
     color="danger"

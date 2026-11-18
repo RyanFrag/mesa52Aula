@@ -38,3 +38,26 @@
   display: flex;
   justify-content: center;
 }
+
+.registro {
+  margin-top: 16px;
+}
+
+.foto-mesa {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.localizacao-carregando {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.localizacao-carregando p {
+  margin: 0;
+}

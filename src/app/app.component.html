@@ -1,3 +1,26 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu contentId="conteudo" swipeGesture="false">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Mesa 52</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle>
+            <ion-item button routerLink="/home" >
+              <ion-label>Baralho</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item button (click)="sair()">
+              <ion-label>Sair</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="conteudo"></ion-router-outlet>
 </ion-app>
