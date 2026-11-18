@@ -1,0 +1,5 @@
+npm i
+npm i firebase
+npm i @capacitor/camera@8.5
+npm i @capacitor/geolocation
+npm i @ionic/pwa-elements
